@@ -91,7 +91,7 @@ try {
             titre VARCHAR(100) NOT NULL,
             prix FLOAT UNSIGNED NOT NULL,
             description_courte VARCHAR(255) NULL,
-            description_longue TEXT NULL,                    
+            description_longue TEXT NULL                    
         )
     ";
 
