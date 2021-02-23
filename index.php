@@ -61,7 +61,42 @@
 
 // TODO Votre code ici.
 
+$server = "localhost";
+$user = "root";
+$pwd = "";
+$db = "table_test_php";
+
 try {
-    ...
+    $maConnexion = new PDO("mysql:host=$server;dbname=$db;charset=utf8", $user, $pwd);
+    $maConnexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $request = "
+        CREATE TABLE utilisateur (
+            id INT UNSIGNED AUTO_INCRMENT PRIMARY KEY,
+            nom VARCHAR(50) NOT NULL,
+            prenom VARCHAR(50) NOT NULL,
+            email VARCHAR(100) NOT NULL,
+            password VARCHAR(100) NOT NULL,
+            adresse VARCHAR(255) NOT NULL,
+            code_postal INT(10) NOT NULL,
+            pays VARCHAR(50) NOT NULL,
+            date_join DATE NOT NULL,
+            UNIQUE(email) 
+        )
+        
+        CREATE TABLE produit (
+            id INT UNSIGNED AUTO_INCRMENT PRIMARY KEY,
+            titre VARCHAR(100) NOT NULL,
+            prix FLOAT UNSIGNED NOT NULL,
+            description_courte VARCHAR(255) NULL,
+            description_longue TEXT NULL,                    
+        )
+    ";
+
+    $maConnexion->exec($request);
+    echo 'Table créée avec succès';
+
 }
-catch...
+catch (PDOException $exception) {
+    echo $exception->getMessage();
+}
