@@ -83,7 +83,9 @@ try {
             date_join DATE NOT NULL,
             UNIQUE(email) 
         )
-        
+    ";
+
+    $request2 = "
         CREATE TABLE produit (
             id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             titre VARCHAR(100) NOT NULL,
@@ -94,6 +96,7 @@ try {
     ";
 
     $maConnexion->exec($request);
+    $maConnexion->exec($request2);
     echo 'Table créée avec succès';
 
 }
